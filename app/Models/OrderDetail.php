@@ -12,4 +12,9 @@ class OrderDetail extends Model
     protected $guarded = [
         'created_at', 'updated_at',
     ];
+
+    public function menu()
+    {
+        return $this->belongsTo('App\Models\Menu', 'menu_id');
+    }
 }
