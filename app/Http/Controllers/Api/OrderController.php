@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -16,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::with('orderDetails.menu')->whereDate('created_at', Carbon::now())->get();
 
         return response()->json($orders, 200);
     }
@@ -47,13 +48,13 @@ class OrderController extends Controller
         foreach ($request->details as  $detail) {
             OrderDetail::create([
                 'order_id' => $order->id,
-                'menu_id' => $detail->id,
-                'quantity' => $detail->quantity,
-                'total' => $detail->quantity * $detail->price,
+                'menu_id' => $detail['id'],
+                'quantity' => $detail['quantity'],
+                'total' => $detail['quantity'] * $detail['price'],
             ]);
         }
 
-        $order->load('orderDetails');
+        $order->load('orderDetails.menu');
 
         return response()->json($order, 201);
     }
