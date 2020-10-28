@@ -46,3 +46,4 @@ Route::middleware('auth:sanctum')->post('/menu', [MenuController::class, 'store'
 Route::middleware('auth:sanctum')->get('/menu', [MenuController::class, 'index']);
 
 Route::middleware('auth:sanctum')->post('/order', [OrderController::class, 'store']);
+Route::middleware('auth:sanctum')->get('/order', [OrderController::class, 'index']);
