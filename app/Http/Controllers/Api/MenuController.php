@@ -91,6 +91,8 @@ class MenuController extends Controller
             'stock' => $request->stock,
         ]);
 
+        $menu->load('category');
+
         return response()->json($menu, 200);
     }
 

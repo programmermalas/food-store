@@ -15,9 +15,9 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($date)
     {
-        $orders = Order::with('orderDetails.menu')->whereDate('created_at', Carbon::now())->get();
+        $orders = Order::with('orderDetails.menu')->whereDate('created_at', $date != "null" ? $date : Carbon::now())->get();
 
         return response()->json($orders, 200);
     }
