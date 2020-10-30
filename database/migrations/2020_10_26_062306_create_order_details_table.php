@@ -15,14 +15,11 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('menu_id');
+            $table->foreignId('order_id')->nullable()->constrained('orders')->onDelete('set null');
+            $table->foreignId('menu_id')->nullable()->constrained('menus')->onDelete('set null');
             $table->integer('quantity');
             $table->integer('total');
             $table->timestamps();
-
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('menu_id')->references('id')->on('menus');
         });
     }
 
