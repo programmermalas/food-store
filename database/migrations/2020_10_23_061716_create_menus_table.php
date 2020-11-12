@@ -18,7 +18,7 @@ class CreateMenusTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->text('description');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->integer('price');
             $table->boolean('stock');
             $table->timestamps();
