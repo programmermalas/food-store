@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => "required|string|email|unique:users,email|max:255",
             'password' => 'required|string|confirmed|min:4|max:255',
         ]);
 
@@ -68,7 +68,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => "required|string|email|unique:users,email,$id|max:255",
             'password' => 'required|string|confirmed|min:4|max:255',
         ]);
 
