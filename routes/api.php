@@ -29,18 +29,21 @@ Route::middleware('auth:sanctum')->get('/logout', [AuthController::class, 'logou
 
 Route::middleware('auth:sanctum')->delete('/user/{id}', [UserController::class, 'destroy']);
 Route::middleware('auth:sanctum')->put('/user/{id}', [UserController::class, 'update']);
+Route::middleware('auth:sanctum')->get('/user/search', [UserController::class, 'search']);
 Route::middleware('auth:sanctum')->get('/user/{id}', [UserController::class, 'show']);
 Route::middleware('auth:sanctum')->post('/user', [UserController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'index']);
 
 Route::middleware('auth:sanctum')->delete('/category/{id}', [CategoryController::class, 'destroy']);
 Route::middleware('auth:sanctum')->put('/category/{id}', [CategoryController::class, 'update']);
+Route::middleware('auth:sanctum')->get('/category/search', [CategoryController::class, 'search']);
 Route::middleware('auth:sanctum')->get('/category/{id}', [CategoryController::class, 'show']);
 Route::middleware('auth:sanctum')->post('/category', [CategoryController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/category', [CategoryController::class, 'index']);
 
 Route::middleware('auth:sanctum')->delete('/menu/{id}', [MenuController::class, 'destroy']);
 Route::middleware('auth:sanctum')->put('/menu/{id}', [MenuController::class, 'update']);
+Route::middleware('auth:sanctum')->get('/menu/search', [MenuController::class, 'search']);
 Route::middleware('auth:sanctum')->get('/menu/{id}', [MenuController::class, 'show']);
 Route::middleware('auth:sanctum')->post('/menu', [MenuController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/menu', [MenuController::class, 'index']);

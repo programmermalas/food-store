@@ -63,6 +63,19 @@ class MenuController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $menus = Menu::with('category')->where('name', 'like', "$request->search%")->get();
+
+        return response()->json($menus, 200);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
